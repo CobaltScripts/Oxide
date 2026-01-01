@@ -1,4 +1,4 @@
-package com.example.mixins;
+package org.cobalt.oxide.mixins;
 
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;

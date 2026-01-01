@@ -1,11 +1,11 @@
 {
   "id": "example_addon",
-  "name": "Example Addon",
+  "name": "Oxide Addon",
   "version": "1.0.0",
   "entrypoints": [
-    "com.example.ExampleAddon"
+    "org.cobalt.oxide.Oxide"
   ],
   "mixins": [
-    "exampleaddon.mixins.json"
+    "oxide.mixins.json"
   ]
 }
