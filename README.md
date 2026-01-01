@@ -8,9 +8,4 @@
   
 </div>
 
-**Oxide Addon** is a simple Cobalt addon written in Kotlin for Minecraft 1.20.10. It demonstrates the basics of using features such as:
-
-- Custom commands
-- Custom modules w/ settings
-
-This project serves as a starting point for anyone looking to develop their own Cobalt addons.
+**Oxide Addon** is a high-performance Cobalt addon for Minecraft 1.20.10 that introduces a **global, fast, and human-like pathfinding system**. Built with **Rust**, it leverages efficient algorithms to provide smooth, realistic navigation for entities while minimizing server lag.  
