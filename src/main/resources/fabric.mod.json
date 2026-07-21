@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "Oxide",
+  "description": "",
+  "authors": ["quiteboring"],
+  "contact": {
+    "homepage": "https://cobalt.quiteboring.dev/",
+    "sources": "https://github.com/CobaltScripts/Oxide"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/oxide/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "oxide.Oxide"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=21"
+  }
+}

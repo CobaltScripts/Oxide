@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "${base_group}.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientPacketListenerMixin",
+    "LevelMixin",
+    "MinecraftMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

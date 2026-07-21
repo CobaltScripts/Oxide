@@ -16,7 +16,7 @@
 
 ## About The Project
 
-Oxide is a Minecraft pathfinder writted with Java and Rust...
+Oxide is a Minecraft pathfinder written with Java ~~and Rust~~...
 
 ## Contributing
 
