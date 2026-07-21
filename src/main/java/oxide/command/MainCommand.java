@@ -50,7 +50,7 @@ public final class MainCommand {
     ChatUtils.send("Pathfinding from (%d, %d, %d) to (%d, %d, %d)...".formatted(start.getX(), start.getY(), start.getZ(), x, y, z));
 
     final Context ctx = new Context();
-    final GoalBlock goal = new GoalBlock(x, y, z);
+    final GoalBlock goal = new GoalBlock(ctx, x, y, z);
     final Pathfinder finder = new Pathfinder(start.getX(), start.getY(), start.getZ(), goal, ctx, MovementType.WALK);
     final Path path = finder.findPath();
 

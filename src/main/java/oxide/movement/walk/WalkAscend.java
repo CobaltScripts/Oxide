@@ -22,11 +22,11 @@ public class WalkAscend extends Movement {
     final int y = startY + 1;
     final int z = startZ + dz;
 
-    if (!MovementHelper.canWalkOn(ctx, x, y, z)) {
+    if (!MovementHelper.canWalkThrough(ctx, startX, y, startZ)) {
       return;
     }
 
-    if (!MovementHelper.canWalkThrough(ctx, x, y - 1, z)) {
+    if (!MovementHelper.canWalkOn(ctx, x, y, z)) {
       return;
     }
 
