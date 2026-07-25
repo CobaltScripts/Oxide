@@ -13,16 +13,12 @@ base {
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
-    maven("https://maven.ccbluex.net/snapshots")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
-
     implementation("net.fabricmc:fabric-loader:${property("loader_version")}")
-    implementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
 
     runtimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.2")
 

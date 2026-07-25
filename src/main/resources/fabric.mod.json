@@ -12,17 +12,12 @@
   "license": "CC0-1.0",
   "icon": "assets/oxide/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "client": [
-      "oxide.Oxide"
-    ]
-  },
+  "entrypoints": {},
   "mixins": [
     "${mod_id}.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric-api": "*",
     "minecraft": "~${minecraft_version}",
     "java": ">=21"
   }
