@@ -10,9 +10,9 @@ import oxide.render.PathRenderer;
 @Mixin(LevelRenderer.class)
 public class LevelRendererMixin {
 
-    @Inject(method = "submitFeatures", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;finalizeGizmoCollection()V"))
-    private void beforeCollectGizmos(CallbackInfo ci) {
-        PathRenderer.render();
-    }
+  @Inject(method = "submitFeatures", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;finalizeGizmoCollection()V"))
+  private void beforeCollectGizmos(CallbackInfo ci) {
+    PathRenderer.render();
+  }
 
 }

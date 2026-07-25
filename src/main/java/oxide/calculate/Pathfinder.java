@@ -1,10 +1,9 @@
 package oxide.calculate;
 
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import lombok.AllArgsConstructor;
 import oxide.cache.ChunkRegion;
 import oxide.calculate.openset.HeapOpenSet;
@@ -25,6 +24,18 @@ public class Pathfinder {
   private final MovementType movementType;
 
   private final Long2ObjectOpenHashMap<PathNode> closedSet = new Long2ObjectOpenHashMap<>();
+
+  private static List<PathNode> reconstruct(PathNode node) {
+    final List<PathNode> path = new ArrayList<>();
+
+    while (node != null) {
+      path.add(node);
+      node = node.getParent();
+    }
+
+    Collections.reverse(path);
+    return path;
+  }
 
   public Path findPath() {
     final MovementResult result = new MovementResult();
@@ -99,18 +110,6 @@ public class Pathfinder {
     }
 
     return node;
-  }
-
-  private static List<PathNode> reconstruct(PathNode node) {
-    final List<PathNode> path = new ArrayList<>();
-
-    while (node != null) {
-      path.add(node);
-      node = node.getParent();
-    }
-
-    Collections.reverse(path);
-    return path;
   }
 
 }

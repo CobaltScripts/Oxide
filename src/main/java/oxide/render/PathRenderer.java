@@ -1,10 +1,8 @@
 package oxide.render;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.List;
-
 import net.minecraft.world.phys.Vec3;
-
 import oxide.calculate.Path;
 import oxide.calculate.PathNode;
 import oxide.util.GizmosUtils;

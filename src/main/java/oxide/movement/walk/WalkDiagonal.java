@@ -7,11 +7,11 @@ import oxide.util.helper.Context;
 
 public class WalkDiagonal extends Movement {
 
-  private static final double SQRT_2 = Math.sqrt(2.0);
   public static final WalkDiagonal NORTH_EAST = new WalkDiagonal(1, -1);
   public static final WalkDiagonal NORTH_WEST = new WalkDiagonal(-1, -1);
   public static final WalkDiagonal SOUTH_EAST = new WalkDiagonal(1, 1);
   public static final WalkDiagonal SOUTH_WEST = new WalkDiagonal(-1, 1);
+  private static final double SQRT_2 = Math.sqrt(2.0);
 
   private WalkDiagonal(int dx, int dz) {
     super(dx, dz);

@@ -16,23 +16,23 @@ import oxide.command.CommandManager;
 @Mixin(ClientPacketListener.class)
 public class ClientPacketListenerMixin {
 
-    @Inject(method = "sendChat", at = @At("HEAD"), cancellable = true)
-    private void onSendChat(String content, CallbackInfo ci) {
-        if (CommandManager.getInstance().execute(content)) {
-            ci.cancel();
-        }
+  @Inject(method = "sendChat", at = @At("HEAD"), cancellable = true)
+  private void onSendChat(String content, CallbackInfo ci) {
+    if (CommandManager.getInstance().execute(content)) {
+      ci.cancel();
     }
+  }
 
-    @Inject(method = "handleLevelChunkWithLight", at = @At("RETURN"))
-    private void loadChunk(final ClientboundLevelChunkWithLightPacket packet, final CallbackInfo ci) {
-        ChunkManager.queueChunk(packet.getX(), packet.getZ());
-    }
+  @Inject(method = "handleLevelChunkWithLight", at = @At("RETURN"))
+  private void loadChunk(final ClientboundLevelChunkWithLightPacket packet, final CallbackInfo ci) {
+    ChunkManager.queueChunk(packet.getX(), packet.getZ());
+  }
 
-    @WrapMethod(method = "handleChunkBlocksUpdate")
-    private void chunkUpdate(final ClientboundSectionBlocksUpdatePacket packet, final Operation<Void> original) {
-        ChunkUpdateFlag.withChunkDeltaUpdating(() -> {
-            original.call(packet);
-        });
-    }
+  @WrapMethod(method = "handleChunkBlocksUpdate")
+  private void chunkUpdate(final ClientboundSectionBlocksUpdatePacket packet, final Operation<Void> original) {
+    ChunkUpdateFlag.withChunkDeltaUpdating(() -> {
+      original.call(packet);
+    });
+  }
 
 }

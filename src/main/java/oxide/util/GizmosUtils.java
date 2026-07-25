@@ -1,8 +1,7 @@
 package oxide.util;
 
+import java.awt.*;
 import lombok.experimental.UtilityClass;
-import java.awt.Color;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gizmos.GizmoStyle;

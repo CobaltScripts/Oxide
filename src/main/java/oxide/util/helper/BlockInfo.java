@@ -1,7 +1,5 @@
 package oxide.util.helper;
 
-import oxide.util.BlockUtils;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.EmptyBlockGetter;
@@ -13,17 +11,18 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import oxide.util.BlockUtils;
 
-public final record BlockInfo(
-    int x, int y, int z,
-    double penalty,
-    boolean air,
-    boolean passable,
-    boolean standable,
-    boolean climbable,
-    Direction facing,
-    LiquidType liquidType,
-    double collisionHeight
+public record BlockInfo(
+  int x, int y, int z,
+  double penalty,
+  boolean air,
+  boolean passable,
+  boolean standable,
+  boolean climbable,
+  Direction facing,
+  LiquidType liquidType,
+  double collisionHeight
 ) {
 
   public BlockInfo(final int x, final int y, final int z, final BlockState state) {

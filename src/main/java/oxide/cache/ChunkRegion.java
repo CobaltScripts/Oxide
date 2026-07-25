@@ -1,8 +1,7 @@
 package oxide.cache;
 
-import oxide.util.helper.BlockInfo;
-
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import oxide.util.helper.BlockInfo;
 
 public class ChunkRegion {
 
@@ -12,6 +11,10 @@ public class ChunkRegion {
   public ChunkRegion(final int x, final int z) {
     this.x = x;
     this.z = z;
+  }
+
+  public static long pack(final int x, final int y, final int z) {
+    return ((long) x & 0x3FFFFFFL) << 38 | ((long) y & 0xFFFL) << 26 | ((long) z & 0x3FFFFFFL);
   }
 
   public BlockInfo get(final int wx, final int wy, final int wz) {
@@ -28,10 +31,6 @@ public class ChunkRegion {
 
   public boolean isEmpty() {
     return blocks.isEmpty();
-  }
-
-  public static long pack(final int x, final int y, final int z) {
-    return ((long) x & 0x3FFFFFFL) << 38 | ((long) y & 0xFFFL) << 26 | ((long) z & 0x3FFFFFFL);
   }
 
 }

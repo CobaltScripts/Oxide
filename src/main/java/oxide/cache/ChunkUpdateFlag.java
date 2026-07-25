@@ -2,9 +2,10 @@ package oxide.cache;
 
 public final class ChunkUpdateFlag {
 
-  private ChunkUpdateFlag() {}
-
   private static final ScopedValue<Void> CHUNK_DELTA_UPDATING = ScopedValue.newInstance();
+
+  private ChunkUpdateFlag() {
+  }
 
   public static boolean isChunkDeltaUpdating() {
     return CHUNK_DELTA_UPDATING.isBound();

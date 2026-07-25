@@ -1,13 +1,12 @@
 package oxide.util.helper;
 
 import lombok.RequiredArgsConstructor;
-import oxide.cache.ChunkManager;
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.status.ChunkStatus;
+import oxide.cache.ChunkManager;
 
 @RequiredArgsConstructor
 public class BlockAccessor {

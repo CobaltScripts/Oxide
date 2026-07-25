@@ -1,11 +1,10 @@
 package oxide.movement;
 
+import lombok.Getter;
 import oxide.movement.walk.WalkAscend;
 import oxide.movement.walk.WalkDescend;
 import oxide.movement.walk.WalkDiagonal;
 import oxide.movement.walk.WalkTraverse;
-
-import lombok.Getter;
 
 public enum MovementType {
 

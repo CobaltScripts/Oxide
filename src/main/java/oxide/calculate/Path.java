@@ -7,13 +7,8 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 
 @AllArgsConstructor
-@Getter
 @Accessors(fluent = true)
-public class Path {
-
-  private final List<PathNode> nodes;
-  private final long timeElapsed;
-  private final int nodesExplored;
+public record Path(List<PathNode> nodes, long timeElapsed, int nodesExplored) {
 
   public boolean found() {
     return !nodes.isEmpty();
