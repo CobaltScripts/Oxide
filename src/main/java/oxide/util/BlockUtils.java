@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.piston.MovingPistonBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -118,7 +117,7 @@ public class BlockUtils {
     }
 
     if (block instanceof SlabBlock) {
-      return state.getValue(SlabBlock.TYPE) != SlabType.BOTTOM;
+      return true;
     }
 
     return false;
