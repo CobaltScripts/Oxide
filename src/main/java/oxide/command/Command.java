@@ -12,5 +12,4 @@ public abstract class Command {
   private final String usage;
 
   public abstract void execute(String[] args);
-
 }

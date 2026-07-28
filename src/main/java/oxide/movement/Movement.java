@@ -11,6 +11,11 @@ public abstract class Movement {
   @Getter
   protected final int dx, dz;
 
-  public abstract void calculateCost(final Context ctx, final int startX, final int startY, final int startZ, final MovementResult result);
-
+  public abstract void calculateCost(
+    final Context ctx,
+    final int startX,
+    final int startY,
+    final int startZ,
+    final MovementResult result
+  );
 }

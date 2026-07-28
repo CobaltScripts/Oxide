@@ -2,7 +2,28 @@ package oxide.util;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.AbstractSkullBlock;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.AmethystClusterBlock;
+import net.minecraft.world.level.block.AzaleaBlock;
+import net.minecraft.world.level.block.BambooStalkBlock;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CarpetBlock;
+import net.minecraft.world.level.block.CauldronBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.EndPortalBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
+import net.minecraft.world.level.block.ScaffoldingBlock;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.StainedGlassBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.piston.MovingPistonBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -24,20 +45,20 @@ public class BlockUtils {
 
     if (
       block instanceof BaseFireBlock ||
-        block == Blocks.COBWEB ||
-        block == Blocks.END_PORTAL ||
-        block == Blocks.COCOA ||
-        block instanceof AbstractSkullBlock ||
-        block == Blocks.BUBBLE_COLUMN ||
-        block instanceof ShulkerBoxBlock ||
-        block instanceof SlabBlock ||
-        block instanceof TrapDoorBlock ||
-        block == Blocks.HONEY_BLOCK ||
-        block == Blocks.END_ROD ||
-        block == Blocks.SWEET_BERRY_BUSH ||
-        block == Blocks.POINTED_DRIPSTONE ||
-        block instanceof AmethystClusterBlock ||
-        block instanceof AzaleaBlock
+      block == Blocks.COBWEB ||
+      block == Blocks.END_PORTAL ||
+      block == Blocks.COCOA ||
+      block instanceof AbstractSkullBlock ||
+      block == Blocks.BUBBLE_COLUMN ||
+      block instanceof ShulkerBoxBlock ||
+      block instanceof SlabBlock ||
+      block instanceof TrapDoorBlock ||
+      block == Blocks.HONEY_BLOCK ||
+      block == Blocks.END_ROD ||
+      block == Blocks.SWEET_BERRY_BUSH ||
+      block == Blocks.POINTED_DRIPSTONE ||
+      block instanceof AmethystClusterBlock ||
+      block instanceof AzaleaBlock
     ) {
       return false;
     }
@@ -57,8 +78,7 @@ public class BlockUtils {
     final FluidState fluidState = state.getFluidState();
 
     if (!fluidState.isEmpty()) {
-      return fluidState.getType() instanceof WaterFluid &&
-        fluidState.getType().getAmount(fluidState) == 8;
+      return fluidState.getType() instanceof WaterFluid && fluidState.getType().getAmount(fluidState) == 8;
     }
 
     if (block instanceof CauldronBlock) {
@@ -72,10 +92,7 @@ public class BlockUtils {
     final Block block = state.getBlock();
 
     if (
-      isFullCube(state) &&
-        block != Blocks.MAGMA_BLOCK &&
-        block != Blocks.BUBBLE_COLUMN &&
-        block != Blocks.HONEY_BLOCK
+      isFullCube(state) && block != Blocks.MAGMA_BLOCK && block != Blocks.BUBBLE_COLUMN && block != Blocks.HONEY_BLOCK
     ) {
       return true;
     }
@@ -88,19 +105,11 @@ public class BlockUtils {
       return true;
     }
 
-    if (
-      block == Blocks.FARMLAND ||
-        block == Blocks.DIRT_PATH ||
-        block == Blocks.SOUL_SAND
-    ) {
+    if (block == Blocks.FARMLAND || block == Blocks.DIRT_PATH || block == Blocks.SOUL_SAND) {
       return true;
     }
 
-    if (
-      block == Blocks.ENDER_CHEST ||
-        block == Blocks.CHEST ||
-        block == Blocks.TRAPPED_CHEST
-    ) {
+    if (block == Blocks.ENDER_CHEST || block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST) {
       return true;
     }
 
@@ -132,20 +141,20 @@ public class BlockUtils {
 
     if (
       block instanceof BaseFireBlock ||
-        block == Blocks.TRIPWIRE ||
-        block == Blocks.COBWEB ||
-        block == Blocks.VINE ||
-        block == Blocks.LADDER ||
-        block == Blocks.COCOA ||
-        block instanceof AzaleaBlock ||
-        block instanceof DoorBlock ||
-        block instanceof FenceGateBlock ||
-        block instanceof SnowLayerBlock ||
-        !state.getFluidState().isEmpty() ||
-        block instanceof TrapDoorBlock ||
-        block instanceof EndPortalBlock ||
-        block instanceof SkullBlock ||
-        block instanceof ShulkerBoxBlock
+      block == Blocks.TRIPWIRE ||
+      block == Blocks.COBWEB ||
+      block == Blocks.VINE ||
+      block == Blocks.LADDER ||
+      block == Blocks.COCOA ||
+      block instanceof AzaleaBlock ||
+      block instanceof DoorBlock ||
+      block instanceof FenceGateBlock ||
+      block instanceof SnowLayerBlock ||
+      !state.getFluidState().isEmpty() ||
+      block instanceof TrapDoorBlock ||
+      block instanceof EndPortalBlock ||
+      block instanceof SkullBlock ||
+      block instanceof ShulkerBoxBlock
     ) {
       return false;
     }
@@ -154,12 +163,14 @@ public class BlockUtils {
   }
 
   public static boolean isClimbable(final Block block) {
-    return block == Blocks.LADDER ||
+    return (
+      block == Blocks.LADDER ||
       block == Blocks.VINE ||
       block == Blocks.WEEPING_VINES ||
       block == Blocks.WEEPING_VINES_PLANT ||
       block == Blocks.TWISTING_VINES ||
-      block == Blocks.TWISTING_VINES_PLANT;
+      block == Blocks.TWISTING_VINES_PLANT
+    );
   }
 
   private static boolean isFullCube(final BlockState state) {
@@ -167,11 +178,11 @@ public class BlockUtils {
 
     if (
       block instanceof BambooStalkBlock ||
-        block instanceof MovingPistonBlock ||
-        block instanceof ScaffoldingBlock ||
-        block instanceof ShulkerBoxBlock ||
-        block instanceof PointedDripstoneBlock ||
-        block instanceof AmethystClusterBlock
+      block instanceof MovingPistonBlock ||
+      block instanceof ScaffoldingBlock ||
+      block instanceof ShulkerBoxBlock ||
+      block instanceof PointedDripstoneBlock ||
+      block instanceof AmethystClusterBlock
     ) {
       return false;
     }
@@ -191,5 +202,4 @@ public class BlockUtils {
   public static Vec3 toCenterVec(final BlockPos pos) {
     return new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ());
   }
-
 }

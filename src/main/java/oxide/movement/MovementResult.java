@@ -23,5 +23,4 @@ public class MovementResult {
   public void reset() {
     cost = ActionCosts.COST_INF;
   }
-
 }

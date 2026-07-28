@@ -7,6 +7,7 @@ import oxide.util.helper.Context;
 public class ActionCosts {
 
   public static final double COST_INF = 1000000;
+
   public final double WALK_ONE_BLOCK_COST = 20 / 4.317;
   public final double WALK_ONE_IN_WATER_COST = 20 / 2.2;
   public final double WALK_ONE_OVER_SOUL_SAND_COST = WALK_ONE_BLOCK_COST * 2;
@@ -21,6 +22,7 @@ public class ActionCosts {
   public final double FALL_0_25_BLOCKS_COST = distanceToTicks(0.25);
   public final double JUMP_ONE_BLOCK_COST = FALL_1_25_BLOCKS_COST - FALL_0_25_BLOCKS_COST;
   public final double[] FALL_N_BLOCKS_COST = generateFallNBlocksCost();
+
   private final Context ctx;
 
   private static double[] generateFallNBlocksCost() {

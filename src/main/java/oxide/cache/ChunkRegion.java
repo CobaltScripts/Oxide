@@ -14,7 +14,7 @@ public class ChunkRegion {
   }
 
   public static long pack(final int x, final int y, final int z) {
-    return ((long) x & 0x3FFFFFFL) << 38 | ((long) y & 0xFFFL) << 26 | ((long) z & 0x3FFFFFFL);
+    return (((long) x & 0x3FFFFFFL) << 38) | (((long) y & 0xFFFL) << 26) | ((long) z & 0x3FFFFFFL);
   }
 
   public BlockInfo get(final int wx, final int wy, final int wz) {
@@ -32,5 +32,4 @@ public class ChunkRegion {
   public boolean isEmpty() {
     return blocks.isEmpty();
   }
-
 }

@@ -1,6 +1,7 @@
 package oxide.util;
 
-import java.awt.*;
+import java.awt.Color;
+
 import lombok.experimental.UtilityClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -18,26 +19,28 @@ public class GizmosUtils {
 
   public static void drawBlockPos(final BlockPos pos, final Color color, final boolean esp, final float lineWidth) {
     drawBox(
-      new AABB(
-        pos.getX(),
-        pos.getY(),
-        pos.getZ(),
-        pos.getX() + 1,
-        pos.getY() + 1,
-        pos.getZ() + 1
-      ),
-      color, esp, lineWidth
+      new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1),
+      color,
+      esp,
+      lineWidth
     );
   }
 
-  public static void drawEntityOutline(final Entity entity, final Color color, final boolean esp, final float lineWidth) {
+  public static void drawEntityOutline(
+    final Entity entity,
+    final Color color,
+    final boolean esp,
+    final float lineWidth
+  ) {
     final float partialTicks = minecraft.getDeltaTracker().getGameTimeDeltaPartialTick(true);
 
-    final AABB box = entity.getBoundingBox().move(
-      entity.xOld + (entity.getX() - entity.xOld) * partialTicks - entity.getX(),
-      entity.yOld + (entity.getY() - entity.yOld) * partialTicks - entity.getY(),
-      entity.zOld + (entity.getZ() - entity.zOld) * partialTicks - entity.getZ()
-    );
+    final AABB box = entity
+      .getBoundingBox()
+      .move(
+        entity.xOld + (entity.getX() - entity.xOld) * partialTicks - entity.getX(),
+        entity.yOld + (entity.getY() - entity.yOld) * partialTicks - entity.getY(),
+        entity.zOld + (entity.getZ() - entity.zOld) * partialTicks - entity.getZ()
+      );
 
     drawBox(box, color, esp, lineWidth);
   }
@@ -53,26 +56,40 @@ public class GizmosUtils {
       return;
     }
 
-    final var props = Gizmos.cuboid(box, GizmoStyle.strokeAndFill(
-      ARGB.color(color.getAlpha(), color.getRed(), color.getGreen(), color.getBlue()), lineWidth,
-      ARGB.color(40, color.getRed(), color.getGreen(), color.getBlue())
-    ));
+    final var props = Gizmos.cuboid(
+      box,
+      GizmoStyle.strokeAndFill(
+        ARGB.color(color.getAlpha(), color.getRed(), color.getGreen(), color.getBlue()),
+        lineWidth,
+        ARGB.color(40, color.getRed(), color.getGreen(), color.getBlue())
+      )
+    );
 
     if (esp) {
       props.setAlwaysOnTop();
     }
   }
 
-  public static void drawLine(final Vec3 from, final Vec3 to, final Color color, final boolean esp, final float lineWidth) {
+  public static void drawLine(
+    final Vec3 from,
+    final Vec3 to,
+    final Color color,
+    final boolean esp,
+    final float lineWidth
+  ) {
     if (color.getAlpha() == 0) {
       return;
     }
 
-    final var props = Gizmos.line(from, to, ARGB.color(color.getAlpha(), color.getRed(), color.getGreen(), color.getBlue()), lineWidth);
+    final var props = Gizmos.line(
+      from,
+      to,
+      ARGB.color(color.getAlpha(), color.getRed(), color.getGreen(), color.getBlue()),
+      lineWidth
+    );
 
     if (esp) {
       props.setAlwaysOnTop();
     }
   }
-
 }

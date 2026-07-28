@@ -14,7 +14,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import oxide.util.BlockUtils;
 
 public record BlockInfo(
-  int x, int y, int z,
+  int x,
+  int y,
+  int z,
   double penalty,
   boolean air,
   boolean passable,
@@ -24,10 +26,12 @@ public record BlockInfo(
   LiquidType liquidType,
   double collisionHeight
 ) {
-
   public BlockInfo(final int x, final int y, final int z, final BlockState state) {
     this(
-      x, y, z, 1.0,
+      x,
+      y,
+      z,
+      1.0,
       state.isAir(),
       state.isAir() || BlockUtils.canWalkThrough(state),
       !state.isAir() && BlockUtils.canWalkOn(state),
@@ -86,5 +90,4 @@ public record BlockInfo(
       return source ? LiquidType.WATER_SOURCE : LiquidType.WATER_FLOWING;
     }
   }
-
 }

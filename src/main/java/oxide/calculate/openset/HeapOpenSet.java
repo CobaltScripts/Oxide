@@ -117,5 +117,4 @@ public class HeapOpenSet {
 
     return Integer.compare(first.getTurns(), second.getTurns());
   }
-
 }

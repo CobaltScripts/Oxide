@@ -7,7 +7,6 @@ import oxide.movement.walk.WalkDiagonal;
 import oxide.movement.walk.WalkTraverse;
 
 public enum MovementType {
-
   WALK(
     WalkTraverse.NORTH,
     WalkTraverse.EAST,
@@ -36,5 +35,4 @@ public enum MovementType {
   MovementType(final Movement... movements) {
     this.movements = movements;
   }
-
 }

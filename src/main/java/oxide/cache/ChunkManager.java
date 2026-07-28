@@ -1,10 +1,11 @@
 package oxide.cache;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongArrayFIFOQueue;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,11 +19,12 @@ public final class ChunkManager {
   private static final Long2ObjectOpenHashMap<ChunkRegion> chunkCache = new Long2ObjectOpenHashMap<>();
   private static final LongArrayFIFOQueue pendingChunks = new LongArrayFIFOQueue();
   private static final LongOpenHashSet pendingSet = new LongOpenHashSet();
-  private static final ExecutorService executor = Executors.newFixedThreadPool(Math.max(2, Runtime.getRuntime().availableProcessors() - 1));
+  private static final ExecutorService executor = Executors.newFixedThreadPool(
+    Math.max(2, Runtime.getRuntime().availableProcessors() - 1)
+  );
   private static final int MAX_PENDING = 64;
 
-  private ChunkManager() {
-  }
+  private ChunkManager() {}
 
   public static void queueChunk(final int x, final int z) {
     final long key = packChunk(x, z);
@@ -156,5 +158,4 @@ public final class ChunkManager {
   private static long packChunk(final int x, final int z) {
     return ((long) x << 32) | (z & 0xFFFFFFFFL);
   }
-
 }

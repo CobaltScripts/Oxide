@@ -19,9 +19,9 @@ public class PathNode {
   private double costSoFar;
   private double costToEnd;
   private double totalCost;
-  private int turns = Integer.MAX_VALUE;
   private PathNode parent;
 
+  private int turns = Integer.MAX_VALUE;
   private int heapPosition = -1;
 
   public PathNode(final int x, final int y, final int z, final Goal goal) {
@@ -31,5 +31,4 @@ public class PathNode {
     this.costSoFar = ActionCosts.COST_INF;
     this.costToEnd = goal.heuristic(x, y, z);
   }
-
 }

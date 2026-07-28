@@ -70,5 +70,4 @@ public class BlockAccessor {
 
     return section.getBlockState(x & 15, y0 & 15, z & 15);
   }
-
 }
