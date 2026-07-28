@@ -19,6 +19,7 @@ public class PathNode {
   private double costSoFar;
   private double costToEnd;
   private double totalCost;
+  private int turns = Integer.MAX_VALUE;
   private PathNode parent;
 
   private int heapPosition = -1;

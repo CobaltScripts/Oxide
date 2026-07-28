@@ -38,7 +38,7 @@ public class GoalBlock implements Goal {
       diagonal = az;
     }
 
-    h += (diagonal * SQRT_2 + straight) * 4.64;
+    h += (diagonal * SQRT_2 + straight) * ctx.costs().WALK_ONE_BLOCK_COST;
     return h;
   }
 
