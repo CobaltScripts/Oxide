@@ -1,11 +1,12 @@
 package oxide.mixins;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import oxide.cache.ChunkManager;
 
 @Mixin(Minecraft.class)
@@ -20,5 +21,4 @@ public class MinecraftMixin {
   private void levelChange(final ClientLevel world, final boolean bl, final CallbackInfo ci) {
     ChunkManager.clearCache();
   }
-
 }

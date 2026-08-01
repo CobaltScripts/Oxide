@@ -15,11 +15,7 @@ import oxide.util.helper.Context;
 public final class GoToCommand extends Command {
 
   public GoToCommand() {
-    super(
-      "goto",
-      "Pathfinds to a block position.",
-      "-goto <x> <y> <z>"
-    );
+    super("goto", "Pathfinds to a block position.", "-goto <x> <y> <z>");
   }
 
   @Override
@@ -50,22 +46,34 @@ public final class GoToCommand extends Command {
 
     final BlockPos start = player.blockPosition();
 
-    ChatUtils.send("Pathfinding from (%d, %d, %d) to (%d, %d, %d)...".formatted(start.getX(), start.getY(), start.getZ(), x, y, z));
+    ChatUtils.send(
+      "Pathfinding from (%d, %d, %d) to (%d, %d, %d)...".formatted(start.getX(), start.getY(), start.getZ(), x, y, z)
+    );
 
     final Context ctx = new Context();
     final GoalBlock goal = new GoalBlock(ctx, x, y, z);
-    final Pathfinder finder = new Pathfinder(
-      start.getX(), start.getY(), start.getZ(),
-      goal, ctx, MovementType.WALK
-    );
+    final Pathfinder finder = new Pathfinder(start.getX(), start.getY(), start.getZ(), goal, ctx, MovementType.WALK);
 
     final Path path = finder.findPath();
     final long nsPerNode = path.timeElapsed() / Math.max(1, path.nodesExplored());
 
     if (path.found()) {
-      ChatUtils.send("Found path: %d nodes (%dms, %d explored, %d ns/node)".formatted(path.length(), path.timeElapsed() / 1_000_000L, path.nodesExplored(), nsPerNode));
+      ChatUtils.send(
+        "Found path: %d nodes (%dms, %d explored, %d ns/node)".formatted(
+          path.length(),
+          path.timeElapsed() / 1_000_000L,
+          path.nodesExplored(),
+          nsPerNode
+        )
+      );
     } else {
-      ChatUtils.send("No path found (%dms, %d explored, %d ns/node)".formatted(path.timeElapsed() / 1_000_000L, path.nodesExplored(), nsPerNode));
+      ChatUtils.send(
+        "No path found (%dms, %d explored, %d ns/node)".formatted(
+          path.timeElapsed() / 1_000_000L,
+          path.nodesExplored(),
+          nsPerNode
+        )
+      );
     }
 
     PathRenderer.setPath(path);

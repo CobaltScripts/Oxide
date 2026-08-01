@@ -18,19 +18,29 @@ public class WalkDiagonal extends Movement {
   }
 
   @Override
-  public void calculateCost(final Context ctx, final int startX, final int startY, final int startZ, final MovementResult result) {
+  public void calculateCost(
+    final Context ctx,
+    final int startX,
+    final int startY,
+    final int startZ,
+    final MovementResult result
+  ) {
     final int x = startX + dx;
     final int z = startZ + dz;
 
-    if (!MovementHelper.canWalkOn(ctx, x, startY, z))
+    if (!MovementHelper.canWalkOn(ctx, x, startY, z)) {
       return;
-    if (!MovementHelper.canWalkThrough(ctx, startX + dx, startY, startZ))
+    }
+
+    if (!MovementHelper.canWalkThrough(ctx, startX + dx, startY, startZ)) {
       return;
-    if (!MovementHelper.canWalkThrough(ctx, startX, startY, startZ + dz))
+    }
+
+    if (!MovementHelper.canWalkThrough(ctx, startX, startY, startZ + dz)) {
       return;
+    }
 
     result.set(x, startY, z);
     result.cost(ctx.costs().WALK_ONE_BLOCK_COST * SQRT_2 + ctx.get(x, startY, z).penalty());
   }
-
 }

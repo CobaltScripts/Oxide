@@ -3,6 +3,7 @@ package oxide.command;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import lombok.Getter;
 import oxide.command.impl.GoToCommand;
 import oxide.util.ChatUtils;
@@ -46,5 +47,4 @@ public final class CommandManager {
     command.execute(Arrays.copyOfRange(split, 1, split.length));
     return true;
   }
-
 }

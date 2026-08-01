@@ -17,7 +17,13 @@ public class WalkAscend extends Movement {
   }
 
   @Override
-  public void calculateCost(final Context ctx, final int startX, final int startY, final int startZ, final MovementResult result) {
+  public void calculateCost(
+    final Context ctx,
+    final int startX,
+    final int startY,
+    final int startZ,
+    final MovementResult result
+  ) {
     final int x = startX + dx;
     final int y = startY + 1;
     final int z = startZ + dz;
@@ -33,5 +39,4 @@ public class WalkAscend extends Movement {
     result.set(x, y, z);
     result.cost(ctx.costs().JUMP_ONE_BLOCK_COST + ctx.get(x, y, z).penalty());
   }
-
 }

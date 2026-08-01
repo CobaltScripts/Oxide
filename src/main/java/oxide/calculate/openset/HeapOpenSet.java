@@ -32,13 +32,12 @@ public class HeapOpenSet {
 
   public void update(final PathNode n) {
     int index = n.getHeapPosition();
-    final double cost = n.getTotalCost();
 
     while (index > 1) {
       final int parentIndex = index >>> 1;
       final PathNode parent = array[parentIndex];
 
-      if (parent.getTotalCost() <= cost) {
+      if (compare(parent, n) <= 0) {
         break;
       }
 
@@ -65,7 +64,6 @@ public class HeapOpenSet {
     }
 
     int index = 1;
-    final double cost = n.getTotalCost();
 
     while (true) {
       int childIndex = index << 1;
@@ -88,7 +86,7 @@ public class HeapOpenSet {
         }
       }
 
-      if (cost <= childCost) {
+      if (compare(n, child) <= 0) {
         break;
       }
 
@@ -110,4 +108,13 @@ public class HeapOpenSet {
     return size == 0;
   }
 
+  private static int compare(final PathNode first, final PathNode second) {
+    final int cost = Double.compare(first.getTotalCost(), second.getTotalCost());
+
+    if (cost != 0) {
+      return cost;
+    }
+
+    return Integer.compare(first.getTurns(), second.getTurns());
+  }
 }

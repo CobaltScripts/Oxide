@@ -31,7 +31,12 @@ public class Context {
     this(player, level, true, 3);
   }
 
-  public Context(final LocalPlayer player, final ClientLevel level, final boolean useJumpBoost, final int maxFallHeight) {
+  public Context(
+    final LocalPlayer player,
+    final ClientLevel level,
+    final boolean useJumpBoost,
+    final int maxFallHeight
+  ) {
     this.player = player;
     this.level = level;
     this.useJumpBoost = useJumpBoost;
@@ -46,5 +51,4 @@ public class Context {
   public BlockInfo get(final int x, final int y, final int z) {
     return access.get(x, y, z);
   }
-
 }

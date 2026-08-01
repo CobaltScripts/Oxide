@@ -1,7 +1,8 @@
 package oxide.render;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
+
 import net.minecraft.world.phys.Vec3;
 import oxide.calculate.Path;
 import oxide.calculate.PathNode;
@@ -29,9 +30,10 @@ public final class PathRenderer {
       GizmosUtils.drawLine(
         new Vec3(from.getX() + 0.5, from.getY() + 0.5, from.getZ() + 0.5),
         new Vec3(to.getX() + 0.5, to.getY() + 0.5, to.getZ() + 0.5),
-        Color.ORANGE, true, 2.0f
+        Color.ORANGE,
+        true,
+        2.0f
       );
     }
   }
-
 }

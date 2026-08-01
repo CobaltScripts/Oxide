@@ -1,9 +1,10 @@
 package oxide.calculate;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import lombok.AllArgsConstructor;
 import oxide.cache.ChunkRegion;
 import oxide.calculate.openset.HeapOpenSet;
@@ -53,7 +54,7 @@ public class Pathfinder {
 
       if (goal.isAtGoal(current.getX(), current.getY(), current.getZ())) {
         final long elapsed = System.nanoTime() - startTime;
-        return new Path(reconstruct(current), elapsed, nodesExplored);
+        return new Path(ctx, reconstruct(current), elapsed, nodesExplored);
       }
 
       for (final Movement movement : movementType.getMovements()) {
@@ -72,11 +73,16 @@ public class Pathfinder {
 
         final PathNode neighbor = getNode(nx, ny, nz);
         final double newCost = current.getCostSoFar() + moveCost;
+        final int newTurns = turns(current, nx, nz);
 
-        if (neighbor.getCostSoFar() - newCost > MIN_COST_IMPROVEMENT) {
+        final boolean betterCost = neighbor.getCostSoFar() - newCost > MIN_COST_IMPROVEMENT;
+        final boolean sameCostBetterTurns = neighbor.getCostSoFar() == newCost && newTurns < neighbor.getTurns();
+
+        if (betterCost || sameCostBetterTurns) {
           neighbor.setParent(current);
           neighbor.setCostSoFar(newCost);
           neighbor.setTotalCost(newCost + neighbor.getCostToEnd());
+          neighbor.setTurns(newTurns);
 
           if (neighbor.getHeapPosition() == -1) {
             openSet.add(neighbor);
@@ -88,7 +94,7 @@ public class Pathfinder {
     }
 
     final long elapsed = System.nanoTime() - startTime;
-    return new Path(Collections.emptyList(), elapsed, nodesExplored);
+    return new Path(ctx, Collections.emptyList(), elapsed, nodesExplored);
   }
 
   private PathNode createStartNode() {
@@ -96,8 +102,24 @@ public class Pathfinder {
 
     node.setCostSoFar(0);
     node.setTotalCost(node.getCostToEnd());
+    node.setTurns(0);
 
     return node;
+  }
+
+  private static int turns(final PathNode current, final int x, final int z) {
+    final PathNode parent = current.getParent();
+
+    if (parent == null) {
+      return 0;
+    }
+
+    final int previousX = current.getX() - parent.getX();
+    final int previousZ = current.getZ() - parent.getZ();
+    final int nextX = x - current.getX();
+    final int nextZ = z - current.getZ();
+
+    return current.getTurns() + (previousX == nextX && previousZ == nextZ ? 0 : 1);
   }
 
   private PathNode getNode(final int x, final int y, final int z) {
@@ -111,5 +133,4 @@ public class Pathfinder {
 
     return node;
   }
-
 }

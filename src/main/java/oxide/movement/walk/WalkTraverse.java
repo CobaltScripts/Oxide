@@ -17,15 +17,21 @@ public class WalkTraverse extends Movement {
   }
 
   @Override
-  public void calculateCost(final Context ctx, final int startX, final int startY, final int startZ, final MovementResult result) {
+  public void calculateCost(
+    final Context ctx,
+    final int startX,
+    final int startY,
+    final int startZ,
+    final MovementResult result
+  ) {
     final int x = startX + dx;
     final int z = startZ + dz;
 
-    if (!MovementHelper.canWalkOn(ctx, x, startY, z))
+    if (!MovementHelper.canWalkOn(ctx, x, startY, z)) {
       return;
+    }
 
     result.set(x, startY, z);
     result.cost(ctx.costs().WALK_ONE_BLOCK_COST + ctx.get(x, startY, z).penalty());
   }
-
 }
